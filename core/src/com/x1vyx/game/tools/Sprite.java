@@ -10,26 +10,26 @@ public class Sprite
 {
     // Colors
     public static final int[][] MONO = {
-            { // GREY, DONE
-                    0x000000ff,
-                    0x202020ff,
-                    0x404040ff,
-                    0xc0c0c0ff,
-                    0xffffffff
+            { // GREY, DO NOT CHANGE: DEFAULT!
+                    0x000000ff, // <- conture
+                    0x202020ff, // <- rocket dark
+                    0x404040ff, // <- rocket light
+                    0xc0c0c0ff, // <- background
+                    0xffffffff, // <- text
             },
-            { // BLACK_GOLD, TODO: DONE?
-                    0xc0b283ff,
-                    0xf4f4f4ff,
-                    0xdcd0c0ff,
-                    0x373737ff,
-                    0x0f0f0fff
+            { // CHERRY, SWITHC!
+                    0x000000ff,
+                    0x5e161aff,
+                    0xa5262eff,
+                    0x2f0b0dff,
+                    0xf4878dff,
             },
             { // FRESH, DONE
                     0x05386bff,
                     0x379683ff,
                     0x8ee4afff,
                     0x5cdb95ff,
-                    0xedf5e1ff
+                    0xedf5e1ff,
 
             },
             { // BLUE, DONE
@@ -37,7 +37,7 @@ public class Sprite
                     0xce6a6bff,
                     0xebaca2ff,
                     0x4a919eff,
-                    0xbed3c3ff
+                    0xbed3c3ff,
 
             },
             { // NICE, DONE
@@ -45,55 +45,47 @@ public class Sprite
                     0xFFAEAEff,
                     0x56BAECff,
                     0xB4D8E7ff,
-                    0xFFF0AAff
-            }, //https://www.colorcombos.com/combotester.html?
-            // color0=FFAEAE&color1=FFF0AA&color2=146481&color3=B4D8E7&color4=56BAEC&show_text=
-            { // NATURAL, DONE
-                    0x7d7731ff,
-                    0xdaad86ff,
-                    0xbc986aff,
-                    0x659dbdff,
-                    0xfbeec1ff
+                    0xFFF0AAff,
+            },
+            { // GUCCI LMAO, DONE
+                    0xbd9302ff,
+                    0x0a6a56ff,
+                    0xa82b11ff,
+                    0x204030ff,
+                    0x000000ff,
             }, // https://www.colorcombos.com/combotester.html?
             // color0=443266&color1=C3C3E5&color2=8C489F&color3=F1F0FF&color4=633385&show_text=
-            { // NEON_CYAN, DONE
-                    0x66fcf1ff,
-                    0x3fccc2ff,
-                    0xc5c6c7ff,
-                    0x0b0c10ff,
-                    0x1f2833ff
+            { // MORGENSTERN, DONE
+                    0x172540ff,
+                    0x4177a1ff,
+                    0x97b7d8ff,
+                    0xfecd7dff,
+                    0xb97637ff,
             }, // https://www.colorcombos.com/combotester.html?
             // color0=4B6580&color1=B7D0D4&color2=5A9CA1&color3=7C7F85&color4=F7AE4B&show_text=
-            { // NEON_VIOLET; DONE
-                    0xf64c72ff,
-                    0x553d67ff,
-                    0x242582ff,
-                    0x2f2fa2ff,
-                    0x99738eff
+            { // PASTA, DONE
+                    0x1b1b1eff,
+                    0xa8bcd1ff,
+                    0xd8dbe2ff,
+                    0x55a4b1ff,
+                    0x373f52ff,
             }, // https://visme.co/blog/website-color-schemes/
-            { // YELLOW, DONE
-                    0x46344eff,
-                    0x5a5560ff,
-                    0x9b786fff,
-                    0xeadd22ff,
-                    0x9d8d8fff
+            { // DREAM, DONE
+                    0x3f6385ff,
+                    0xe7a59aff,
+                    0x87738cff,
+                    0xffbc95ff,
+                    0x20364aff,
             },
-            { // RED, DONE
-                    0x6f2232ff,
-                    0xc3073fff,
-                    0x950740ff,
-                    0x1a1a1dff,
-                    0x4e4e50ff
-            },
-            { // BLUE_ORANGE, DONE
-                    0x24305eff,
-                    0x374785ff,
-                    0xa8d0e6ff,
-                    0xf76c6cff,
-                    0xf8e9a1ff,
+            { // WINTER, DONE
+                    0x020b36ff,
+                    0x230745ff,
+                    0xe3e3ffff,
+                    0xd6fffbff,
+                    0xb3e3f4ff,
             }
     };
-    public static final int SUPPORTED_COLORS = 11;
+    public static final int SUPPORTED_COLORS = 10;
     private static final int SUPPORTED_SHADES = 5;
     // Active fullTextures: red, green or blue fullTextures that have been initialized by class color
     // Variables
