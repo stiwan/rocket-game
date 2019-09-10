@@ -10,14 +10,14 @@ public class Sprite
 {
     // Colors
     public static final int[][] MONO = {
-            { // GREY, DO NOT CHANGE: DEFAULT!
+            { // GREY, DEFAULT
                     0x000000ff, // <- conture
                     0x202020ff, // <- rocket dark
                     0x404040ff, // <- rocket light
                     0xc0c0c0ff, // <- background
                     0xffffffff, // <- text
             },
-            { // CHERRY, SWITHC!
+            { // CHERRY, DONE
                     0x000000ff,
                     0x5e161aff,
                     0xa5262eff,
@@ -55,7 +55,7 @@ public class Sprite
                     0x000000ff,
             }, // https://www.colorcombos.com/combotester.html?
             // color0=443266&color1=C3C3E5&color2=8C489F&color3=F1F0FF&color4=633385&show_text=
-            { // MORGENSTERN, DONE
+            { // MORGENSHTERN, DONE
                     0x172540ff,
                     0x4177a1ff,
                     0x97b7d8ff,

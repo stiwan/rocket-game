@@ -15,6 +15,7 @@ import com.x1vyx.game.objects.items.Paint;
 import com.x1vyx.game.objects.items.Torpedo;
 import com.x1vyx.game.tools.Control;
 import com.x1vyx.game.tools.GameObject;
+import com.x1vyx.game.tools.Randomer;
 import com.x1vyx.game.tools.RocketGame;
 import com.x1vyx.game.ui.DistanceManager;
 import com.x1vyx.game.ui.Mushroom;
@@ -42,10 +43,12 @@ public class PlayState extends State
     private Torpedo torpedo;
     private ScoreBoard scoreBoard;
 
-    private Sound sndCoin;
+    private final int COIN_SOUND_LIMIT = 6;
+    private Sound[] sndCoin = new Sound[COIN_SOUND_LIMIT];
+    private final int PAINT_SOUND_LIMIT = 3;
+    private Sound[] sndPaint = new Sound[PAINT_SOUND_LIMIT];
     private Sound sndBtn;
     private Sound sndDeath;
-    private Sound sndPaint;
 
     private boolean soundsLoaded;
 
@@ -118,13 +121,20 @@ public class PlayState extends State
         return direction;
     }
 
-    private void loadSounds() // TODO load in menu
+    private void loadSounds() // TODO load in menu?
     {
+        for (int i = 0; i < COIN_SOUND_LIMIT; i++)
+        {
+            sndCoin[i] = Gdx.audio.newSound(Gdx.files.internal("wav/coin-" + i + ".wav"));
+        }
+        for (int i = 0; i < PAINT_SOUND_LIMIT; i++)
+        {
+            sndPaint[i] = Gdx.audio.newSound(Gdx.files.internal("wav/paint-" + i + ".wav"));
+        }
+        sndDeath = Gdx.audio.newSound(Gdx.files.internal("wav/death.wav"));
+        sndBtn = Gdx.audio.newSound(Gdx.files.internal("wav/button.wav"));
+
         soundsLoaded = true;
-        sndCoin = Gdx.audio.newSound(Gdx.files.internal("wav/sndCoin.wav"));
-        sndPaint = Gdx.audio.newSound(Gdx.files.internal("wav/sndPaint.wav"));
-        sndDeath = Gdx.audio.newSound(Gdx.files.internal("wav/sndDeath.wav"));
-        sndBtn = Gdx.audio.newSound(Gdx.files.internal("wav/sndBtn.wav"));
     }
 
     @Override
@@ -193,7 +203,7 @@ public class PlayState extends State
             score.add();
             objects.add(new Mushroom(1, ship.getX() + 15, ship.getY() + 30));
             if (!RocketGame.muted && soundsLoaded)
-                sndCoin.play();
+                sndCoin[Randomer.getInt(COIN_SOUND_LIMIT)].play();
         }
         if (ship.checkPaintCollision(paint))
         {
@@ -201,7 +211,7 @@ public class PlayState extends State
             score.add(3);
             b.switchColor(true);
             if (!RocketGame.muted && soundsLoaded)
-                sndPaint.play();
+                sndPaint[Randomer.getInt(PAINT_SOUND_LIMIT)].play();
         }
 
         // Die
@@ -271,10 +281,16 @@ public class PlayState extends State
 
         if (soundsLoaded)
         {
-            sndCoin.dispose();
+            for (int i = 0; i < COIN_SOUND_LIMIT; i++)
+            {
+                sndCoin[i].dispose();
+            }
             sndBtn.dispose();
             sndDeath.dispose();
-            sndPaint.dispose();
+            for (int i = 0; i < PAINT_SOUND_LIMIT; i++)
+            {
+                sndPaint[i].dispose();
+            }
         }
         System.out.println("PLAY STATE DISPOSED");
     }

@@ -8,6 +8,7 @@ import com.x1vyx.game.objects.items.Paint;
 import com.x1vyx.game.objects.items.Torpedo;
 import com.x1vyx.game.states.PlayState;
 import com.x1vyx.game.tools.GameObject;
+import com.x1vyx.game.tools.Randomer;
 import com.x1vyx.game.tools.RocketGame;
 import com.x1vyx.game.tools.Sprite;
 import com.x1vyx.game.ui.Speed;

@@ -64,7 +64,7 @@ public class MenuState extends State
         t = new Torpedo();
 
         // Sound
-        sndBtn = Gdx.audio.newSound(Gdx.files.internal("wav/sndBtn.wav"));
+        sndBtn = Gdx.audio.newSound(Gdx.files.internal("wav/button.wav"));
 
         // Config
         if(showTips)
