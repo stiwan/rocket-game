@@ -36,7 +36,7 @@ public class Control extends GameObject
     // h = 25
 
     //* TEST *//
-    public static boolean left, right, action, start, restart, mute, kb; // key status
+    public static boolean left, right, action, start, restart, mute, kb, touched[]; // key status
     public int x1, y1, x2, y2; // touch points
     private boolean touchRelocated;
 
@@ -65,6 +65,8 @@ public class Control extends GameObject
         fields[4] = new Field(0, RocketGame.getHeight() / 2, RocketGame.getWidth() / 2, RocketGame.getHeight() / 2);
         // Right upper
         fields[5] = new Field(RocketGame.getWidth() / 2, RocketGame.getHeight() / 2, RocketGame.getWidth() / 2, RocketGame.getHeight() / 2);
+
+        touched = new boolean[2];
     }
 
     public void setRS(int rs)
@@ -83,15 +85,21 @@ public class Control extends GameObject
     @Override
     public boolean update(float dt) // TODO: optimize even more
     {
+        x1 = -1;
+        y1 = -1;
+        x2 = -1;
+        y2 = -1;
         // get touch points
-        if (Gdx.input.isTouched() || RocketGame.DEV_MODE)
+        touched[0] = Gdx.input.isTouched() || RocketGame.DEV_MODE;
+        touched[1] = Gdx.input.isTouched(1) || RocketGame.DEV_MODE;
+
+        if (touched[0])
         {
             touchRelocated = true;
             x1 = Gdx.input.getX(0) / State.resolutionFactor;
             y1 = RocketGame.getHeight() - Gdx.input.getY(0) / State.resolutionFactor;
-            if (Gdx.input.getX(1) != 0)
+            if (touched[1])
             {
-                System.out.println(Gdx.input.getX(1));
                 x2 = Gdx.input.getX(1) / State.resolutionFactor;
                 y2 = RocketGame.getHeight() - Gdx.input.getY(1) / State.resolutionFactor;
             }
@@ -99,12 +107,7 @@ public class Control extends GameObject
         {
             if(!touchRelocated)
                 return true;
-
             touchRelocated = false;
-            x1 = -1;
-            y1 = -1;
-            x2 = -1;
-            y2 = -1;
         }
 
         // TODO: optimize
@@ -117,8 +120,19 @@ public class Control extends GameObject
         // update button press status
         if (renderState == RS_GAME)
         {
-            left = btnL.pressed = btnL.containsTouch(x1, y1) || btnL.containsTouch(x2, y2) || Gdx.input.isKeyPressed(Input.Keys.A);
-            right = btnR.pressed = btnR.containsTouch(x1, y1) || btnR.containsTouch(x2, y2) || Gdx.input.isKeyPressed(Input.Keys.D);
+            left = btnL.pressed = btnL.containsTouch(x1, y1) || Gdx.input.isKeyPressed(Input.Keys.A);
+            if(left && btnR.containsTouch(x2, y2))
+            {
+                left = btnL.pressed = false;
+                right = btnR.pressed = true;
+            } else
+                right = btnR.pressed = btnR.containsTouch(x1, y1) || Gdx.input.isKeyPressed(Input.Keys.D);
+            if(right && btnL.containsTouch(x2, y2))
+            {
+                right = btnR.pressed = false;
+                left = btnL.pressed = true;
+            }
+
             action = btnAction.pressed = btnAction.containsTouch(x1, y1) || btnAction.containsTouch(x2, y2) || Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.SPACE);
             if (action && !lastWasAction)
             {

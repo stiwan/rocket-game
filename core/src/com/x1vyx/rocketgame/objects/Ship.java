@@ -14,12 +14,12 @@ import com.x1vyx.rocketgame.ui.Speed;
 
 public class Ship extends GameObject
 {
-    private static float v, aX, vX, maxVX, orix, oriy;
+    private static float v, aX, aSlide, vX, maxVX, orix, oriy;
     private static boolean demo, dead;
     private static boolean holdBoost;
     private int frame = 3;
     private boolean moveStarted;
-    private float aV = 0.004f, oria = aV, maxV = 4f, originalMaxV = maxV, breakV = 0.05f;
+    private float aV = 0.004f, oria = aV, maxV = 4f, originalMaxV = maxV, breakV = 0.015f;
     private Fire fire;
     private Speed speed;
     public static float top;
@@ -34,8 +34,9 @@ public class Ship extends GameObject
         fire = new Fire((int) orix, (int) oriy - 7);
         v = 0.0f;
         vX = 0.0f;
-        aX = 0.3f;
-        maxVX = 2f;
+        aX = 0.25f;
+        aSlide = 0.15f;
+        maxVX = 2.5f;
     }
 
     public static float getV()
@@ -114,9 +115,9 @@ public class Ship extends GameObject
                 else // slide effect
                 {
                     if (vX < 0)
-                        vX += aX;
+                        vX += aSlide;
                     else
-                        vX -= aX;
+                        vX -= aSlide;
                 }
             }
             if ((Control.action && !RocketGame.keepBoost) || (RocketGame.boosting && RocketGame.keepBoost)) // Boost

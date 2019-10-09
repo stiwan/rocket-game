@@ -36,7 +36,8 @@ public class RocketGame extends ApplicationAdapter
         RocketGame.setHeight(Gdx.graphics.getHeight() / pixelFactor);
 
         // Screen is 2:1 or wider
-        isWide = (height / width == 2);
+        isWide = ((float) height / (float) width > 1.8f);
+
         if(DEV_MODE)
             System.out.println("\n\n SCREEN WIDE: " + isWide + "\n\n");
 

@@ -36,10 +36,6 @@ public class MenuState extends State
     public Coin coin;
     public Paint paint;
     public Torpedo t;
-    //
-    private int key, lastKey;
-
-    private final boolean USE_KEYBOARD = true;
 
     // Config
     private boolean showTips = true;
@@ -79,68 +75,10 @@ public class MenuState extends State
         objects.add(t);
     }
 
-    public void updateInput()
-    {
-        if (lastKey != key)
-            lastKey = key;
-        key = 0;
-
-        if (USE_KEYBOARD)
-        {
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A))
-                key = 1;
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D))
-                key = 2;
-            if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W))
-                key = 3;
-        }
-
-        if (Gdx.input.isTouched())
-        {
-            touchX[0] = Gdx.input.getX(0) / resolutionFactor;
-            touchY[0] = 240 - Gdx.input.getY(0) / resolutionFactor;
-            touchX[1] = Gdx.input.getX(1) / resolutionFactor;
-            touchY[1] = 240 - Gdx.input.getY(1) / resolutionFactor;
-
-        }
-
-        if (key == 3 && lastKey != 3)
-        {
-//            if (!RocketGame.muted)
-//                sndBtn.play();
-            // *** Switch to PlayState ***
-            gsm.set(new PlayState(gsm, this));
-        }
-        // control colors
-        if (key == 1 && lastKey != 1) // Left
-        {
-            b.switchColor(false);
-//            if (!RocketGame.muted)
-//                sndBtn.play();
-        } else if (key == 2 && lastKey != 2) // Right
-        {
-            b.switchColor(true);
-//            if (!RocketGame.muted)
-//                sndBtn.play();
-        } else if (key == 6 && lastKey != 6) // Switch sound mode
-        {
-            RocketGame.muted = !RocketGame.muted;
-        } else if (key == 7 && lastKey != 7) // Switch boost mode
-        {
-            RocketGame.keepBoost = !RocketGame.keepBoost;
-        }
-    }
-
-
     @Override
     public void update(float dt)
     {
         control.update(dt);
-
-        // Control input
-        // Sound
-        if (Control.right)
-            ;
 
         for (GameObject elem : objects)
             elem.update(dt);
@@ -166,7 +104,7 @@ public class MenuState extends State
         Sprite.renderText(sb, "collect this ->", 10, 100);
         Sprite.renderText(sb, "<- and that", 50, 80);
         if (RocketGame.DEV_MODE)
-            Sprite.renderText(sb, "IS WIDE: " + RocketGame.isWide, 10, 50);
+            ;//Sprite.renderText(sb, "IS WIDE: " + RocketGame.isWide, 10, 50);
         frame.render(sb);
         logo.render(sb);
     }

@@ -6,6 +6,4 @@ eclipse.project {
     name = appName + "-core"
 }
 dependencies {
-    //implementation files('C:/Users/istol/GDrive/code/libgdx/Sandbox/android/libs/box2dlights-1.5-SNAPSHOT-sources.jar')
-
 }
